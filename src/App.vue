@@ -48,10 +48,11 @@
                   <span class="gallery-slide__dot"></span>
                 </div>
                 <div class="gallery-slide__viewport">
-                  <div class="gallery-slide__placeholder">
-                    <p class="gallery-slide__label">{{ slide.name }}</p>
-                    <p class="gallery-slide__path">{{ slide.path }}</p>
-                  </div>
+                  <img
+                    :src="slide.image"
+                    :alt="slide.name"
+                    class="gallery-slide__image"
+                  />
                 </div>
               </div>
             </div>
@@ -203,7 +204,7 @@
     </main>
 
     <footer class="footer">
-      <p>(c) 2025 Niño Christian P. Pagaran</p>
+      <p>(c) 2026 Niño Christian P. Pagaran</p>
     </footer>
 
     <div
@@ -363,6 +364,7 @@ import { nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue"
 import attendsPreview from "./assets/attends-preview.png";
 import foodtruckPreview from "./assets/foodtruck-microlink.png";
 import missiontoolsPreview from "./assets/missiontools-preview.png";
+import heroImage03 from "./assets/hero/hero-03.png";
 import SectionCard from "./components/SectionCard.vue";
 
 const activeHeroSlide = ref(0);
@@ -633,47 +635,60 @@ const services = [
   "Landing pages",
   "Dashboards",
   "Admin tools",
-  "Automation",
+  "Automation workflows",
   "API integrations",
+  "Auth systems",
+  "Cloud deployment",
 ];
 
 const stackTools = [
   "React",
   "Next.js",
-  "Vue",
+  "Vue / Nuxt",
   "Node.js",
+  "TypeScript",
   "PostgreSQL",
   "Supabase",
+  "Drizzle ORM",
   "Prisma",
-  "Playwright",
+  "n8n",
 ];
 
 const experiences = [
+  {
+    logo: "SL",
+    role: "Full-Stack Developer",
+    company: "Strixen Limited (Mission Tools App)",
+    type: "Contract",
+    period: "Nov 2025 – Mar 2026",
+    summary: "Built a Nuxt 4/Vue 3 mobile-first SPA with dashboards, media playback, billing flows, and a Bun/Hono/Drizzle API handling 100k+ requests/day.",
+    stack: "Nuxt, Vue 3, Bun, Hono, Drizzle ORM, CDN deployment",
+  },
   {
     logo: "FW",
     role: "Freelance Full-Stack Developer",
     company: "Independent / Client Work",
     type: "Freelance",
-    period: "2023 - 2025",
-    summary: "Built websites, web apps, automation flows, and custom internal tools.",
-    stack: "React, Next.js, Node.js, PostgreSQL, n8n",
+    period: "Jul 2023 – Dec 2025",
+    summary: "Built and deployed 6+ full-stack web apps for small businesses and campus use cases. Designed auth systems, REST APIs, and automation workflows with n8n.",
+    stack: "React, Next.js, Node.js, PostgreSQL, n8n, Supabase",
   },
   {
     logo: "BA",
     role: "Web Development Intern",
     company: "Bayoa Analytics Engineering",
     type: "Internship",
-    period: "2024",
-    summary: "Worked on internal dashboards, schema migrations, and frontend architecture support.",
-    stack: "TypeScript, dashboards, Drizzle ORM, relational modeling",
+    period: "Sep – Nov 2024",
+    summary: "Developed internal dashboards and analytics interfaces. Migrated schemas from Prisma to Drizzle ORM, improving query performance and maintainability.",
+    stack: "TypeScript, Drizzle ORM, Prisma, dashboards",
   },
   {
     logo: "UP",
     role: "Project Lead / Team Collaborator",
     company: "University Projects and Hackathons",
     type: "Part-time",
-    period: "2023 - Present",
-    summary: "Led and contributed to product prototypes, technical pitches, and student project builds.",
+    period: "2023 – Present",
+    summary: "Led a five-member team on a location-based attendance system. Participated in KOMSAI Week Hackathon 2025 handling technical docs and pitch presentations.",
     stack: "Product planning, backend coordination, presentations",
   },
 ];
@@ -720,16 +735,8 @@ const websites = [
 
 const heroSlides = [
   {
-    name: "Hero 01",
-    path: "src/assets/hero/hero-01.png",
-  },
-  {
-    name: "Hero 02",
-    path: "src/assets/hero/hero-02.png",
-  },
-  {
     name: "Hero 03",
-    path: "src/assets/hero/hero-03.png",
+    image: heroImage03,
   },
 ];
 
