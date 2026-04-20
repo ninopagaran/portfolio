@@ -3,7 +3,16 @@
     <header class="header">
       <nav class="nav">
         <p class="logo">Niño Christian P. Pagaran</p>
-        <p class="nav-cta">
+        <div class="nav-actions">
+          <button
+            type="button"
+            class="theme-toggle"
+            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+            @click="toggleTheme"
+          >
+            <svg v-if="isDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
           <button
             v-if="hasContactForm"
             type="button"
@@ -19,7 +28,7 @@
           >
             Email me
           </a>
-        </p>
+        </div>
       </nav>
 
       <div class="hero-grid">
@@ -74,7 +83,6 @@
         id="websites"
         eyebrow="Website showcase"
         title="Selected websites"
-        subtitle="Live previews and deployed screenshots."
       >
         <div class="showcase-grid">
           <article v-for="site in websites" :key="site.name" class="project website-card">
@@ -109,7 +117,6 @@
         id="work"
         eyebrow="Experience"
         title="Work experience"
-        subtitle="Roles, teams, and the kind of work I've handled."
       >
         <div class="experience-list">
           <article
@@ -159,15 +166,11 @@
         </SectionCard>
       </div>
 
-      <SectionCard
-        id="contact"
-        eyebrow="Contact"
-        title="Let's build something good"
-        subtitle="For websites, apps, and product work."
-      >
-        <div class="contact">
-          <div class="contact-card">
-            <p class="contact-card__label">Contact details</p>
+      <section id="contact" class="section contact-section" aria-labelledby="section-contact">
+        <div class="contact-compact">
+          <div class="contact-details">
+            <p class="section-eyebrow">Contact</p>
+            <h2 id="section-contact" class="section-title">Let's build something good</h2>
             <p class="contact-card__value">Niño Christian Pagaran</p>
             <p class="contact-card__line">
               <a href="mailto:ninoppagaran@gmail.com">ninoppagaran@gmail.com</a>
@@ -176,31 +179,25 @@
               <a href="tel:+639760234686">+639760234686</a>
             </p>
             <p class="note">Best for project inquiries, freelance work, and collaborations.</p>
-            <div class="contact-links">
-              <a href="https://github.com/ninopagaran" target="_blank" rel="noopener">
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/ninoppagaran/" target="_blank" rel="noopener">
-                LinkedIn
-              </a>
-              <a
-                href="https://drive.google.com/file/d/1RBAS5sO7K8FZjDbwp5VJySjnDei6EBra/view?usp=drive_link"
-                target="_blank"
-                rel="noopener"
-              >
-                Resume
-              </a>
-            </div>
           </div>
-          <div v-if="hasContactForm" class="contact-card">
-            <p class="contact-card__label">Contact form</p>
-            <p class="note">Open the form in a popup and send everything there.</p>
-            <button type="button" class="contact-card__button" @click="openContactModal">
-              Open contact form
+          <div class="contact-links">
+            <a href="https://github.com/ninopagaran" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/ninoppagaran/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://drive.google.com/file/d/1RBAS5sO7K8FZjDbwp5VJySjnDei6EBra/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
+            <a href="https://ninopagaran.vercel.app/" target="_blank" rel="noopener">Portfolio</a>
+            <a href="https://wa.me/639760234686" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="viber://chat?number=%2B639760234686" target="_blank" rel="noopener">Viber</a>
+            <button
+              v-if="hasContactForm"
+              type="button"
+              class="contact-card__button"
+              @click="openContactModal"
+            >
+              Contact form
             </button>
           </div>
         </div>
-      </SectionCard>
+      </section>
     </main>
 
     <footer class="footer">
@@ -379,6 +376,31 @@ let turnstileScriptPromise;
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || "";
 const hasContactForm = Boolean(turnstileSiteKey);
 
+function getSystemTheme() {
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+const savedTheme = localStorage.getItem("theme");
+const isDark = ref(savedTheme ? savedTheme === "dark" : getSystemTheme() === "dark");
+
+function applyTheme() {
+  document.documentElement.classList.toggle("light", !isDark.value);
+  document.documentElement.classList.toggle("dark", isDark.value);
+  document.documentElement.style.colorScheme = isDark.value ? "dark" : "light";
+}
+
+function toggleTheme() {
+  isDark.value = !isDark.value;
+  localStorage.setItem("theme", isDark.value ? "dark" : "light");
+  applyTheme();
+}
+
+applyTheme();
+
+function getPreferredTheme() {
+  return isDark.value ? "dark" : "light";
+}
+
 function isTurnstileAvailable() {
   return typeof window !== "undefined" && window.turnstile;
 }
@@ -468,7 +490,7 @@ async function renderTurnstile() {
 
   turnstileWidgetId.value = window.turnstile.render(turnstileContainer.value, {
     sitekey: turnstileSiteKey,
-    theme: "dark",
+    theme: getPreferredTheme(),
     action: "contact_form",
     callback: (token) => {
       turnstileToken.value = token;
