@@ -120,7 +120,7 @@
       >
         <div class="experience-list">
           <article
-            v-for="experience in experiences"
+            v-for="experience in featuredExperiences"
             :key="`${experience.role}-${experience.company}`"
             class="experience-item"
           >
@@ -136,12 +136,34 @@
               </p>
               <p class="experience-item__period">{{ experience.period }}</p>
               <p class="project-copy">{{ experience.summary }}</p>
-              <p class="experience-item__stack">
-                <span class="muted">{{ experience.stack }}</span>
-              </p>
+              <div v-if="experience.metrics?.length" class="experience-item__metrics">
+                <span v-for="metric in experience.metrics" :key="metric">{{ metric }}</span>
+              </div>
+              <ul v-if="experience.highlights?.length" class="experience-item__highlights">
+                <li v-for="highlight in experience.highlights" :key="highlight">{{ highlight }}</li>
+              </ul>
+              <div class="experience-item__stack">
+                <span
+                  v-for="stackItem in experience.stack"
+                  :key="stackItem"
+                  class="experience-item__stack-chip"
+                >
+                  {{ stackItem }}
+                </span>
+              </div>
             </div>
           </article>
         </div>
+        <p class="experience-list__note">
+          Earlier student projects and additional background are available in the
+          <a
+            href="https://drive.google.com/file/d/1RBAS5sO7K8FZjDbwp5VJySjnDei6EBra/view?usp=drive_link"
+            target="_blank"
+            rel="noopener"
+          >
+            resume
+          </a>.
+        </p>
       </SectionCard>
 
       <div class="split">
@@ -678,13 +700,34 @@ const stackTools = [
 
 const experiences = [
   {
+    logo: "DI",
+    role: "Software Engineer / Product Developer",
+    company: "DI Strategy",
+    type: "Contract",
+    period: "Apr 2026 – Jul 2026",
+    summary: "Built AI workflow PoCs, full-stack product features, and packaged web deliverables across Python, SwiftUI, FastAPI, React, and WordPress.",
+    metrics: ["Local-first AI subtitles", "SwiftUI + FastAPI app", "CI + pre-push checks"],
+    highlights: [
+      "Built a Traditional Chinese subtitle PoC covering STT, context injection, SRT export, run history, caching, and oversized-file handling.",
+      "Developed a reptile care platform with auth, pet profiles, care records, feeding plans, media, community features, AI-assisted care, and commerce flows.",
+      "Added migrations, diagnostics, linting, formatting, automated tests, smoke checks, Makefile tasks, and bilingual product specs for cleaner delivery and handoff.",
+    ],
+    stack: ["Python", "Gradio", "SQLite", "OpenAI", "Groq", "SwiftUI", "FastAPI"],
+  },
+  {
     logo: "SL",
     role: "Full-Stack Developer",
     company: "Strixen Limited (Mission Tools App)",
     type: "Contract",
     period: "Nov 2025 – Mar 2026",
-    summary: "Built a Nuxt 4/Vue 3 mobile-first SPA with dashboards, media playback, billing flows, and a Bun/Hono/Drizzle API handling 100k+ requests/day.",
-    stack: "Nuxt, Vue 3, Bun, Hono, Drizzle ORM, CDN deployment",
+    summary: "Built a mobile-first Nuxt/Vue product surface and supporting API workflows for dashboards, media access, and billing operations.",
+    metrics: ["Mobile-first SPA", "Dashboard + billing flows", "API-backed media access"],
+    highlights: [
+      "Built product interfaces for dashboards, playback, account access, and billing flows with Nuxt 4 and Vue 3.",
+      "Implemented backend workflows with Bun, Hono, and Drizzle ORM for application state, data access, and operational flows.",
+      "Refined release quality, deployment behavior, and production-style app structure across frontend and backend.",
+    ],
+    stack: ["Nuxt", "Vue 3", "Bun", "Hono", "Drizzle ORM"],
   },
   {
     logo: "FW",
@@ -692,8 +735,14 @@ const experiences = [
     company: "Independent / Client Work",
     type: "Freelance",
     period: "Jul 2023 – Dec 2025",
-    summary: "Built and deployed 6+ full-stack web apps for small businesses and campus use cases. Designed auth systems, REST APIs, and automation workflows with n8n.",
-    stack: "React, Next.js, Node.js, PostgreSQL, n8n, Supabase",
+    summary: "Built and deployed full-stack web applications for small businesses, internal tools, and campus use cases.",
+    metrics: ["Custom business websites", "Internal tools", "Automation workflows"],
+    highlights: [
+      "Delivered custom websites, admin tools, and product interfaces aligned to client requirements and operational workflows.",
+      "Implemented authentication, REST APIs, database-backed features, and automation flows for content, operations, and user management.",
+      "Handled end-to-end delivery from planning and UI implementation to backend integration, deployment, and stakeholder iteration.",
+    ],
+    stack: ["React", "Next.js", "Node.js", "PostgreSQL", "n8n", "Supabase"],
   },
   {
     logo: "BA",
@@ -701,8 +750,14 @@ const experiences = [
     company: "Bayoa Analytics Engineering",
     type: "Internship",
     period: "Sep – Nov 2024",
-    summary: "Developed internal dashboards and analytics interfaces. Migrated schemas from Prisma to Drizzle ORM, improving query performance and maintainability.",
-    stack: "TypeScript, Drizzle ORM, Prisma, dashboards",
+    summary: "Supported internal dashboard development and data-layer improvements for analytics-oriented product workflows.",
+    metrics: ["Internal dashboards", "Schema migration work", "Analytics interfaces"],
+    highlights: [
+      "Built dashboard and analytics interface features with a focus on maintainable frontend structure and data presentation.",
+      "Contributed to schema migration work from Prisma to Drizzle ORM for clearer backend structure and maintainability.",
+      "Worked within an existing engineering environment using internal tooling, relational modeling, and shared implementation standards.",
+    ],
+    stack: ["TypeScript", "Drizzle ORM", "Prisma", "Dashboards"],
   },
   {
     logo: "UP",
@@ -710,10 +765,18 @@ const experiences = [
     company: "University Projects and Hackathons",
     type: "Part-time",
     period: "2023 – Present",
-    summary: "Led a five-member team on a location-based attendance system. Participated in KOMSAI Week Hackathon 2025 handling technical docs and pitch presentations.",
-    stack: "Product planning, backend coordination, presentations",
+    summary: "Led student product builds and collaborated on technical delivery, documentation, and presentation work.",
+    metrics: ["Team leadership", "Attendance system", "Hackathon delivery"],
+    highlights: [
+      "Led a team building a location-based attendance system, coordinating implementation, task ownership, and technical direction.",
+      "Supported hackathon and student project delivery through technical documentation, product framing, and pitch preparation.",
+      "Worked across planning, execution, and communication to keep student-built products aligned with technical and presentation goals.",
+    ],
+    stack: ["Product planning", "Backend coordination", "Presentations"],
   },
 ];
+
+const featuredExperiences = experiences.slice(0, 4);
 
 const websites = [
   {
