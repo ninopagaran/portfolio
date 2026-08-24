@@ -1,29 +1,39 @@
 <template>
-  <div class="page">
-    <header class="header">
-      <nav class="nav">
-        <p class="logo">Niño Christian P. Pagaran</p>
-        <div class="nav-actions">
+  <div class="mx-auto max-w-[1080px] px-4 py-6 sm:px-5 md:py-8">
+    <header>
+      <nav class="grid grid-cols-[1fr_auto] items-center gap-4 rounded-lg border border-[#d6d1c5] bg-white px-4 py-3 shadow-sm md:grid-cols-[1fr_auto_1fr] md:px-5 dark:border-[#40433d] dark:bg-[#242622]">
+        <div class="inline-flex items-center gap-2.5 text-sm leading-tight font-bold">
+          <button type="button" class="rounded-full" aria-label="View Niño Christian Pagaran's profile picture" @click="openProfileImage">
+            <img :src="profilePhoto" alt="Niño Christian Pagaran" class="size-[33px] rounded-full object-cover ring-1 ring-black/10 transition hover:ring-2 hover:ring-[#af3f2c] dark:ring-white/20 dark:hover:ring-[#ed876f]" />
+          </button>
+          <a href="#content" aria-label="Niño Christian Pagaran — back to top">Niño Christian<br />Pagaran</a>
+        </div>
+        <div class="order-3 col-span-2 flex justify-between border-t border-[#d6d1c5] pt-3 text-sm md:order-none md:col-span-1 md:justify-center md:gap-6 md:border-0 md:pt-0 dark:border-[#40433d]" aria-label="Primary navigation">
+          <a class="text-[#55554e] transition-colors hover:text-[#af3f2c] dark:text-[#c9c5bb] dark:hover:text-[#ed876f]" href="#websites">Work</a>
+          <a class="text-[#55554e] transition-colors hover:text-[#af3f2c] dark:text-[#c9c5bb] dark:hover:text-[#ed876f]" href="#work">Experience</a>
+          <a class="text-[#55554e] transition-colors hover:text-[#af3f2c] dark:text-[#c9c5bb] dark:hover:text-[#ed876f]" href="#contact">Contact</a>
+        </div>
+        <div class="flex items-center justify-end gap-2 md:gap-3">
           <button
             type="button"
-            class="theme-toggle"
+            class="grid size-9 place-items-center rounded border border-[#aea89a] bg-white text-current transition-colors hover:bg-[#f5e7e2] dark:border-[#696b62] dark:bg-[#242622] dark:hover:bg-[#392923]"
             :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
             @click="toggleTheme"
           >
-            <svg v-if="isDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <Sun v-if="isDark" :size="18" aria-hidden="true" />
+            <Moon v-else :size="18" aria-hidden="true" />
           </button>
           <button
             v-if="hasContactForm"
             type="button"
-            class="nav-cta__button"
+            class="rounded bg-[#af3f2c] px-3 py-2 text-sm font-medium text-white transition hover:bg-[#812b1d] dark:bg-[#ed876f] dark:text-[#1c1e1b]"
             @click="openContactModal"
           >
             Let's talk
           </button>
           <a
             v-else
-            class="nav-cta__button"
+            class="rounded bg-[#af3f2c] px-3 py-2 text-sm font-medium text-white transition hover:bg-[#812b1d] dark:bg-[#ed876f] dark:text-[#1c1e1b]"
             href="mailto:ninoppagaran@gmail.com"
           >
             Email me
@@ -31,46 +41,46 @@
         </div>
       </nav>
 
-      <div class="hero-grid">
-        <div class="intro">
-          <p class="eyebrow">Full stack developer</p>
-          <h1>Websites and web products built to feel clear and look sharp.</h1>
-          <p class="intro-copy">
-            <span class="emph">Custom websites</span>,
-            <span class="emph">product UI</span>, and
-            <span class="emph">full-stack builds</span>.
-            <span class="muted">Based in Lapu-Lapu City.</span>
+      <div class="mt-5 grid gap-6 md:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold text-[#af3f2c] dark:text-[#ed876f]">Full stack developer</p>
+          <h1 class="mt-2 mb-3 max-w-[18ch] text-[clamp(2rem,4vw,3.2rem)] leading-tight font-bold">I build websites, tools, and product UI that people use.</h1>
+          <p class="max-w-[55ch] text-base leading-relaxed text-[#55554e] dark:text-[#c9c5bb]">
+            I work across <span class="font-semibold text-[#1a1b19] dark:text-[#f1eee6]">frontend</span>, <span class="font-semibold text-[#1a1b19] dark:text-[#f1eee6]">backend</span>,
+            and <span class="font-semibold text-[#1a1b19] dark:text-[#f1eee6]">deployment</span>.
           </p>
+          <div class="mt-5 grid gap-2 text-sm text-[#55554e] dark:text-[#c9c5bb]">
+            <span><b class="text-[#1a1b19] dark:text-[#f1eee6]">Based:</b> Lapu-Lapu City, PH</span>
+            <span><b class="text-[#1a1b19] dark:text-[#f1eee6]">Focus:</b> Web apps, tools &amp; sites</span>
+            <span><b class="text-[#1a1b19] dark:text-[#f1eee6]">Status:</b> Available for freelance work</span>
+          </div>
         </div>
 
-        <aside class="hero-preview" aria-hidden="true">
-          <div class="hero-gallery">
+        <aside class="min-w-0 self-center" aria-label="Selected interface work">
+          <div class="relative aspect-4/3 overflow-hidden rounded-lg border border-[#aea89a] bg-black dark:border-[#696b62]" role="region" aria-roledescription="carousel" aria-label="Selected interface work">
             <div
               v-for="(slide, index) in heroSlides"
               :key="slide.name"
-              :class="['gallery-slide', { 'is-active': index === activeHeroSlide }]"
+              :class="['absolute inset-0 transition duration-500', index === activeHeroSlide ? 'translate-x-0 opacity-100' : 'translate-x-3 opacity-0 pointer-events-none']"
+              :aria-hidden="index !== activeHeroSlide"
             >
-              <div class="gallery-slide__card">
-                <div class="gallery-slide__bar">
-                  <span class="gallery-slide__dot"></span>
-                  <span class="gallery-slide__dot"></span>
-                  <span class="gallery-slide__dot"></span>
-                </div>
-                <div class="gallery-slide__viewport">
-                  <img
-                    :src="slide.image"
-                    :alt="slide.name"
-                    class="gallery-slide__image"
-                  />
-                </div>
-              </div>
+              <img :src="slide.image" :alt="slide.alt" class="block size-full object-cover object-top" />
             </div>
-            <div class="gallery-pager">
-              <span
-                v-for="(slide, index) in heroSlides"
-                :key="slide.name"
-                :class="['gallery-pager__dot', { 'is-active': index === activeHeroSlide }]"
-              ></span>
+            <div class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-linear-to-t from-black/75 to-transparent px-3 pt-10 pb-3">
+              <p class="font-mono text-[.64rem] tracking-[.04em] text-white uppercase">{{ heroSlides[activeHeroSlide].name }}</p>
+              <p class="font-mono text-[.64rem] tracking-[.04em] text-white/75">{{ activeHeroSlide + 1 }} / {{ heroSlides.length }}</p>
+            </div>
+            <button type="button" class="absolute top-1/2 left-3 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-black/45 text-white transition hover:border-[#60a5fa] hover:bg-[#2563eb]" aria-label="Show previous interface" @click="showPreviousHeroSlide">
+              <ChevronLeft :size="18" aria-hidden="true" />
+            </button>
+            <button type="button" class="absolute top-1/2 right-3 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-black/45 text-white transition hover:border-[#60a5fa] hover:bg-[#2563eb]" aria-label="Show next interface" @click="showNextHeroSlide">
+              <ChevronRight :size="18" aria-hidden="true" />
+            </button>
+          </div>
+          <div class="flex items-center justify-between pt-3">
+            <p class="font-mono text-[.64rem] tracking-[.04em] text-[#76756d] uppercase dark:text-[#a8a49a]">Selected interface work</p>
+            <div class="flex gap-1.5" aria-label="Select interface preview">
+              <button v-for="(slide, index) in heroSlides" :key="slide.name" type="button" :class="['h-1.5 rounded-full transition-all', index === activeHeroSlide ? 'w-5 bg-[#2563eb]' : 'w-1.5 bg-[#d4d4d4] hover:bg-[#737373] dark:bg-[#525252] dark:hover:bg-[#a3a3a3]']" :aria-label="`Show ${slide.name}`" :aria-current="index === activeHeroSlide ? 'true' : undefined" @click="activeHeroSlide = index"></button>
             </div>
           </div>
         </aside>
@@ -78,20 +88,20 @@
 
     </header>
 
-    <main id="content" class="content">
+    <main id="content" class="mt-5 grid gap-5">
       <SectionCard
         id="websites"
         eyebrow="Website showcase"
-        title="Selected websites"
+        title="Recent work"
       >
-        <div class="showcase-grid">
-          <article v-for="site in websites" :key="site.name" class="project website-card">
-            <div :class="['preview', site.previewClass]">
-              <div v-if="site.previewEmbed" class="preview__embed-shell">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <article v-for="site in websites" :key="site.name" class="group flex min-w-0 flex-col overflow-hidden rounded-md border border-[#d6d1c5] bg-white shadow-sm dark:border-[#40433d] dark:bg-[#242622]">
+            <div :class="['relative grid aspect-video min-h-0 place-items-center overflow-hidden bg-[#20221f] dark:bg-[#111210]', site.previewClass]">
+              <div v-if="site.previewEmbed" class="relative size-full overflow-hidden bg-[#20221f] dark:bg-[#111210]">
                 <iframe
                   :src="site.previewEmbed"
                   :title="`${site.name} live preview`"
-                  class="preview__frame"
+                  class="pointer-events-none block size-[400%] origin-top-left scale-[.25] border-0"
                   loading="lazy"
                   tabindex="-1"
                 ></iframe>
@@ -100,15 +110,20 @@
                 v-else-if="site.previewImage"
                 :src="site.previewImage"
                 :alt="`${site.name} preview`"
-                class="preview__image"
+                class="block size-full object-cover object-top"
               />
-              <span v-else class="preview__label">{{ site.placeholder }}</span>
+              <span v-else class="font-mono text-[.7rem] text-[#76756d] uppercase dark:text-[#a8a49a]">{{ site.placeholder }}</span>
             </div>
-            <p class="project-label">{{ site.type }}</p>
-            <h3>
-              <a :href="site.link" target="_blank" rel="noopener">{{ site.name }}</a>
-            </h3>
-            <p class="meta"><span class="muted">{{ site.stack }}</span></p>
+            <div class="grid content-start p-4">
+              <p class="text-xs font-semibold text-[#af3f2c] dark:text-[#ed876f]">{{ site.type }}</p>
+              <h3 class="mt-1 mb-1 text-lg font-semibold">
+                <a class="transition-colors hover:text-[#af3f2c] dark:hover:text-[#ed876f]" :href="site.link" target="_blank" rel="noopener">{{ site.name }}</a>
+              </h3>
+              <p class="text-sm leading-relaxed text-[#76756d] dark:text-[#a8a49a]">{{ site.stack }}</p>
+              <a class="mt-3 w-fit text-sm font-medium text-[#af3f2c] hover:underline dark:text-[#ed876f]" :href="site.link" target="_blank" rel="noopener">
+                View live site <ArrowUpRight class="inline-block text-[#af3f2c] dark:text-[#ed876f]" :size="15" aria-hidden="true" />
+              </a>
+            </div>
           </article>
         </div>
       </SectionCard>
@@ -116,37 +131,36 @@
       <SectionCard
         id="work"
         eyebrow="Experience"
-        title="Work experience"
+        title="Experience"
       >
-        <div class="experience-list">
+        <div class="grid gap-3">
           <article
-            v-for="experience in featuredExperiences"
+            v-for="experience in experiences"
             :key="`${experience.role}-${experience.company}`"
-            class="experience-item"
+            class="grid grid-cols-[44px_minmax(0,1fr)] gap-3 rounded-md border border-[#d6d1c5] bg-white p-4 md:grid-cols-[52px_minmax(0,1fr)] dark:border-[#40433d] dark:bg-[#242622]"
           >
-            <div class="experience-item__rail" aria-hidden="true">
-              <div class="experience-item__logo">{{ experience.logo }}</div>
-              <div class="experience-item__line"></div>
+            <div class="flex items-start pt-0.5" aria-hidden="true">
+              <div class="grid size-9 place-items-center rounded border border-[#aea89a] bg-[#f5e7e2] text-xs font-medium text-[#af3f2c] dark:border-[#696b62] dark:bg-[#392923] dark:text-[#ed876f]">{{ experience.logo }}</div>
             </div>
-            <div class="experience-item__body">
-              <h3>{{ experience.role }}</h3>
-              <p class="experience-item__company">
-                <span class="emph">{{ experience.company }}</span>
-                <span class="muted">/ {{ experience.type }}</span>
+            <div class="min-w-0">
+              <h3 class="mb-1 text-lg leading-tight font-semibold">{{ experience.role }}</h3>
+              <p class="mb-2 flex flex-wrap gap-1 text-sm text-[#55554e] dark:text-[#c9c5bb]">
+                <span class="font-semibold text-[#1a1b19] dark:text-[#f1eee6]">{{ experience.company }}</span>
+                <span class="text-[#76756d] dark:text-[#a8a49a]">/ {{ experience.type }}</span>
               </p>
-              <p class="experience-item__period">{{ experience.period }}</p>
-              <p class="project-copy">{{ experience.summary }}</p>
-              <div v-if="experience.metrics?.length" class="experience-item__metrics">
-                <span v-for="metric in experience.metrics" :key="metric">{{ metric }}</span>
+              <p class="mb-3 text-xs font-medium text-[#af3f2c] dark:text-[#ed876f]">{{ experience.period }}</p>
+              <p class="mb-3 max-w-[70ch] text-sm leading-relaxed text-[#55554e] dark:text-[#c9c5bb]">{{ experience.summary }}</p>
+              <div v-if="experience.metrics?.length" class="mb-3 flex flex-wrap gap-1.5">
+                <span v-for="metric in experience.metrics" :key="metric" class="rounded bg-[#f5e7e2] px-2 py-1 text-xs text-[#812b1d] dark:bg-[#392923] dark:text-[#ffad99]">{{ metric }}</span>
               </div>
-              <ul v-if="experience.highlights?.length" class="experience-item__highlights">
+              <ul v-if="experience.highlights?.length" class="mb-3 grid max-w-[80ch] list-disc gap-1 pl-5 text-sm leading-relaxed text-[#55554e] marker:text-[#af3f2c] dark:text-[#c9c5bb] dark:marker:text-[#ed876f]">
                 <li v-for="highlight in experience.highlights" :key="highlight">{{ highlight }}</li>
               </ul>
-              <div class="experience-item__stack">
+              <div class="flex flex-wrap gap-1">
                 <span
                   v-for="stackItem in experience.stack"
                   :key="stackItem"
-                  class="experience-item__stack-chip"
+                  class="rounded border border-[#d6d1c5] px-2 py-1 text-xs text-[#55554e] dark:border-[#40433d] dark:text-[#c9c5bb]"
                 >
                   {{ stackItem }}
                 </span>
@@ -154,66 +168,64 @@
             </div>
           </article>
         </div>
-        <p class="experience-list__note">
-          Earlier student projects and additional background are available in the
+        <p class="mt-1 text-sm leading-relaxed text-[#55554e] dark:text-[#c9c5bb]">
+          More background and older projects are in the
           <a
             href="https://drive.google.com/file/d/1RBAS5sO7K8FZjDbwp5VJySjnDei6EBra/view?usp=drive_link"
             target="_blank"
             rel="noopener"
+            class="text-[#1a1b19] underline decoration-[#af3f2c] underline-offset-3 dark:text-[#f1eee6] dark:decoration-[#ed876f]"
           >
             resume
           </a>.
         </p>
       </SectionCard>
 
-      <div class="split">
-        <SectionCard
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <SectionCard class="min-w-0"
           id="about"
           eyebrow="Services"
-          title="What I build"
+          title="What I can help with"
         >
-          <div class="tag-list">
-            <span v-for="service in services" :key="service">{{ service }}</span>
+          <div class="flex flex-wrap gap-2">
+            <span v-for="service in services" :key="service" class="rounded bg-[#f5e7e2] px-2.5 py-1.5 text-sm text-[#55554e] dark:bg-[#392923] dark:text-[#c9c5bb]">{{ service }}</span>
           </div>
         </SectionCard>
 
-        <SectionCard
+        <SectionCard class="min-w-0"
           id="skills"
           eyebrow="Stack"
-          title="Core stack"
+          title="Main tools"
         >
-          <div class="tag-list">
-            <span v-for="tool in stackTools" :key="tool">{{ tool }}</span>
+          <div class="flex flex-wrap gap-2">
+            <span v-for="tool in stackTools" :key="tool" class="rounded bg-[#f5e7e2] px-2.5 py-1.5 text-sm text-[#55554e] dark:bg-[#392923] dark:text-[#c9c5bb]">{{ tool }}</span>
           </div>
         </SectionCard>
       </div>
 
-      <section id="contact" class="section contact-section" aria-labelledby="section-contact">
-        <div class="contact-compact">
-          <div class="contact-details">
-            <p class="section-eyebrow">Contact</p>
-            <h2 id="section-contact" class="section-title">Let's build something good</h2>
-            <p class="contact-card__value">Niño Christian Pagaran</p>
-            <p class="contact-card__line">
-              <a href="mailto:ninoppagaran@gmail.com">ninoppagaran@gmail.com</a>
+      <section id="contact" class="scroll-mt-5 border-b border-[#d6d1c5] py-6 md:py-8 dark:border-[#40433d]" aria-labelledby="section-contact">
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="grid gap-1.5">
+            <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-[#af3f2c] dark:text-[#ed876f]">Contact</p>
+            <h2 id="section-contact" class="mb-1 text-2xl font-semibold">Get in touch</h2>
+            <p class="text-base font-semibold">Niño Christian Pagaran</p>
+            <p class="text-[#55554e] dark:text-[#c9c5bb]">
+              <a class="underline decoration-[#af3f2c] underline-offset-4 dark:decoration-[#ed876f]" href="mailto:ninoppagaran@gmail.com">ninoppagaran@gmail.com</a>
             </p>
-            <p class="contact-card__line">
-              <a href="tel:+639760234686">+639760234686</a>
+            <p class="text-[#55554e] dark:text-[#c9c5bb]">
+              <a class="underline decoration-[#af3f2c] underline-offset-4 dark:decoration-[#ed876f]" href="tel:+639760234686">+639760234686</a>
             </p>
-            <p class="note">Best for project inquiries, freelance work, and collaborations.</p>
           </div>
-          <div class="contact-links">
-            <a href="https://github.com/ninopagaran" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/ninoppagaran/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://drive.google.com/file/d/1RBAS5sO7K8FZjDbwp5VJySjnDei6EBra/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
-            <a href="https://ninopagaran.vercel.app/" target="_blank" rel="noopener">Portfolio</a>
-            <a href="https://wa.me/639760234686" target="_blank" rel="noopener">WhatsApp</a>
-            <a href="viber://chat?number=%2B639760234686" target="_blank" rel="noopener">Viber</a>
-            <button
-              v-if="hasContactForm"
-              type="button"
-              class="contact-card__button"
-              @click="openContactModal"
+          <div class="grid grid-cols-2 gap-2">
+          <a class="rounded border border-[#d6d1c5] bg-white px-3 py-2 text-sm font-medium hover:border-[#af3f2c] hover:text-[#af3f2c] dark:border-[#40433d] dark:bg-[#242622] dark:hover:text-[#ed876f]" href="https://github.com/ninopagaran" target="_blank" rel="noopener">GitHub</a>
+          <a class="rounded border border-[#d6d1c5] bg-white px-3 py-2 text-sm font-medium hover:border-[#af3f2c] hover:text-[#af3f2c] dark:border-[#40433d] dark:bg-[#242622] dark:hover:text-[#ed876f]" href="https://www.linkedin.com/in/ninoppagaran/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="rounded border border-[#d6d1c5] bg-white px-3 py-2 text-sm font-medium hover:border-[#af3f2c] hover:text-[#af3f2c] dark:border-[#40433d] dark:bg-[#242622] dark:hover:text-[#ed876f]" href="https://drive.google.com/file/d/1RBAS5sO7K8FZjDbwp5VJySjnDei6EBra/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
+          <a class="rounded border border-[#d6d1c5] bg-white px-3 py-2 text-sm font-medium hover:border-[#af3f2c] hover:text-[#af3f2c] dark:border-[#40433d] dark:bg-[#242622] dark:hover:text-[#ed876f]" href="https://wa.me/639760234686" target="_blank" rel="noopener">WhatsApp</a>
+          <button
+            v-if="hasContactForm"
+            type="button"
+            class="rounded border border-[#d6d1c5] bg-white px-3 py-2 text-left text-sm font-medium hover:border-[#af3f2c] hover:text-[#af3f2c] dark:border-[#40433d] dark:bg-[#242622] dark:hover:text-[#ed876f]"
+            @click="openContactModal"
             >
               Contact form
             </button>
@@ -222,32 +234,32 @@
       </section>
     </main>
 
-    <footer class="footer">
+    <footer class="pt-5 text-center text-xs text-[#76756d] dark:text-[#a8a49a]">
       <p>(c) 2026 Niño Christian P. Pagaran</p>
     </footer>
 
     <div
       v-if="isContactModalOpen && hasContactForm"
-      class="modal-backdrop"
+      class="fixed inset-0 z-20 grid place-items-center bg-[rgba(20,20,18,.58)] p-5 backdrop-blur-sm dark:bg-black/70"
       @click.self="closeContactModal"
     >
       <div
-        class="contact-modal"
+        class="max-h-[calc(100vh-40px)] w-full max-w-[590px] overflow-y-auto rounded-xl border border-[#aea89a] bg-[#fbfaf6] p-5 shadow-xl sm:p-8 dark:border-[#696b62] dark:bg-[#242622]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
       >
-        <div class="contact-modal__header">
+        <div class="mb-6 flex justify-between gap-4">
           <div>
-            <p class="contact-card__label">Contact form</p>
-            <h2 id="contact-modal-title">Start a project</h2>
-            <p class="contact-modal__intro">
+            <p class="font-mono text-[.69rem] font-medium tracking-[.08em] text-[#af3f2c] uppercase dark:text-[#ed876f]">Contact form</p>
+            <h2 id="contact-modal-title" class="mt-1.5 font-display text-[2rem] leading-[1] font-semibold">Start a project</h2>
+            <p class="mt-3 max-w-[48ch] leading-relaxed text-[#55554e] dark:text-[#c9c5bb]">
               Send the basics. I will reply with next steps, scope, and availability.
             </p>
           </div>
           <button
             type="button"
-            class="contact-modal__close"
+            class="grid size-9 shrink-0 place-items-center border border-[#aea89a] bg-transparent text-[1.3rem] leading-none transition hover:bg-[#f5e7e2] hover:text-[#812b1d] dark:border-[#696b62] dark:hover:bg-[#392923] dark:hover:text-[#ffad99]"
             aria-label="Close contact form"
             @click="closeContactModal"
           >
@@ -255,104 +267,104 @@
           </button>
         </div>
 
-        <form class="contact-form" @submit.prevent="submitContactForm">
+        <form class="grid gap-4" @submit.prevent="submitContactForm">
           <input
             v-model="contactForm.company"
-            class="contact-form__honeypot"
+            class="pointer-events-none absolute -left-[9999px] opacity-0"
             type="text"
             name="company"
             tabindex="-1"
             autocomplete="off"
           />
 
-          <div class="contact-form__row">
-            <label class="contact-form__field">
-              <span>Name</span>
+          <div class="grid gap-3.5 sm:grid-cols-2">
+            <label class="grid gap-1.5">
+              <span class="font-mono text-[.65rem] tracking-[.07em] text-[#76756d] uppercase dark:text-[#a8a49a]">Name</span>
               <input
                 v-model.trim="contactForm.name"
-                :class="{ 'is-invalid': contactState.errors.name }"
+                :class="['w-full border border-[#aea89a] bg-[#fffefa] px-3 py-2.5 text-current dark:border-[#696b62] dark:bg-[#181a17]', { 'border-[#b42318] bg-[#fff2f0] dark:border-[#ff9d89] dark:bg-[#3b2522]': contactState.errors.name }]"
                 type="text"
                 name="name"
                 maxlength="80"
                 autocomplete="name"
                 placeholder="Your name"
               />
-              <span v-if="contactState.errors.name" class="contact-form__error">
+              <span v-if="contactState.errors.name" class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">
                 {{ contactState.errors.name }}
               </span>
             </label>
 
-            <label class="contact-form__field">
-              <span>Email</span>
+            <label class="grid gap-1.5">
+              <span class="font-mono text-[.65rem] tracking-[.07em] text-[#76756d] uppercase dark:text-[#a8a49a]">Email</span>
               <input
                 v-model.trim="contactForm.email"
-                :class="{ 'is-invalid': contactState.errors.email }"
+                :class="['w-full border border-[#aea89a] bg-[#fffefa] px-3 py-2.5 text-current dark:border-[#696b62] dark:bg-[#181a17]', { 'border-[#b42318] bg-[#fff2f0] dark:border-[#ff9d89] dark:bg-[#3b2522]': contactState.errors.email }]"
                 type="email"
                 name="email"
                 maxlength="160"
                 autocomplete="email"
                 placeholder="you@example.com"
               />
-              <span v-if="contactState.errors.email" class="contact-form__error">
+              <span v-if="contactState.errors.email" class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">
                 {{ contactState.errors.email }}
               </span>
             </label>
           </div>
 
-          <label class="contact-form__field">
-            <span>Project</span>
+          <label class="grid gap-1.5">
+            <span class="font-mono text-[.65rem] tracking-[.07em] text-[#76756d] uppercase dark:text-[#a8a49a]">Project</span>
             <input
               v-model.trim="contactForm.project"
-              :class="{ 'is-invalid': contactState.errors.project }"
+              :class="['w-full border border-[#aea89a] bg-[#fffefa] px-3 py-2.5 text-current dark:border-[#696b62] dark:bg-[#181a17]', { 'border-[#b42318] bg-[#fff2f0] dark:border-[#ff9d89] dark:bg-[#3b2522]': contactState.errors.project }]"
               type="text"
               name="project"
               maxlength="120"
               placeholder="Landing page, dashboard, booking app..."
             />
-            <span v-if="contactState.errors.project" class="contact-form__error">
+            <span v-if="contactState.errors.project" class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">
               {{ contactState.errors.project }}
             </span>
           </label>
 
-          <label class="contact-form__field">
-            <span>Message</span>
+          <label class="grid gap-1.5">
+            <span class="font-mono text-[.65rem] tracking-[.07em] text-[#76756d] uppercase dark:text-[#a8a49a]">Message</span>
             <textarea
               v-model.trim="contactForm.message"
-              :class="{ 'is-invalid': contactState.errors.message }"
+              :class="['w-full resize-y border border-[#aea89a] bg-[#fffefa] px-3 py-2.5 text-current dark:border-[#696b62] dark:bg-[#181a17]', { 'border-[#b42318] bg-[#fff2f0] dark:border-[#ff9d89] dark:bg-[#3b2522]': contactState.errors.message }]"
               name="message"
               rows="5"
               maxlength="3000"
               placeholder="What are you building, what do you need, and when do you need it?"
             ></textarea>
-            <span v-if="contactState.errors.message" class="contact-form__error">
+            <span v-if="contactState.errors.message" class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">
               {{ contactState.errors.message }}
             </span>
           </label>
 
-          <div class="contact-form__captcha">
-            <p class="contact-form__field-label">Verification</p>
+          <div class="grid gap-2">
+            <p class="font-mono text-[.65rem] tracking-[.07em] text-[#76756d] uppercase dark:text-[#a8a49a]">Verification</p>
             <div
               v-if="turnstileSiteKey"
               ref="turnstileContainer"
-              class="contact-form__captcha-widget"
+              class="min-h-[65px]"
             ></div>
-            <p v-else class="contact-form__error">
+            <p v-else class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">
               Captcha is not configured yet. Add your Turnstile keys before deployment.
             </p>
-            <p v-if="turnstileError" class="contact-form__error">{{ turnstileError }}</p>
-            <p v-if="contactState.errors.turnstileToken" class="contact-form__error">
+            <p v-if="turnstileError" class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">{{ turnstileError }}</p>
+            <p v-if="contactState.errors.turnstileToken" class="text-[.8rem] leading-snug text-[#b42318] dark:text-[#ff9d89]">
               {{ contactState.errors.turnstileToken }}
             </p>
           </div>
 
-          <div class="contact-form__actions">
-            <div class="contact-form__meta">
-              <p class="contact-form__note">Email goes directly to `ninoppagaran@gmail.com`.</p>
+          <div class="flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-end">
+            <div class="grid gap-1.5">
+              <p class="text-[.84rem] leading-snug text-[#76756d] dark:text-[#a8a49a]">Email goes directly to `ninoppagaran@gmail.com`.</p>
               <p
                 v-if="contactState.message"
                 :class="[
-                  'contact-form__status',
-                  `contact-form__status--${contactState.status}`,
+                  'text-[.84rem] leading-snug',
+                  contactState.status === 'success' ? 'text-[#812b1d] dark:text-[#ffad99]' : 'text-[#b42318] dark:text-[#ff9d89]',
                 ]"
               >
                 {{ contactState.message }}
@@ -360,7 +372,7 @@
             </div>
 
             <button
-              class="contact-form__submit"
+              class="min-w-[150px] border border-[#af3f2c] bg-[#af3f2c] px-4 py-3 font-mono text-[.67rem] tracking-[.04em] text-[#fffaf5] uppercase transition hover:-translate-y-px hover:bg-[#812b1d] disabled:cursor-wait disabled:opacity-55 dark:border-[#ed876f] dark:bg-[#ed876f] dark:text-[#1c1e1b] dark:hover:bg-[#ffad99]"
               type="submit"
               :disabled="
                 contactState.status === 'sending' ||
@@ -375,26 +387,43 @@
         </form>
       </div>
     </div>
+
+    <div
+      v-if="isProfileImageOpen"
+      class="fixed inset-0 z-30 grid place-items-center bg-black/90 p-5"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Profile picture preview"
+      @click.self="closeProfileImage"
+    >
+      <button type="button" class="absolute top-5 right-5 grid size-10 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20" aria-label="Close profile picture preview" @click="closeProfileImage">
+        <X :size="21" aria-hidden="true" />
+      </button>
+      <img :src="profilePhoto" alt="Niño Christian Pagaran" class="max-h-[88vh] max-w-[92vw] rounded-md object-contain shadow-2xl" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Moon, Sun, X } from "@lucide/vue";
 import attendsPreview from "./assets/attends-preview.png";
 import foodtruckPreview from "./assets/foodtruck-microlink.png";
 import missiontoolsPreview from "./assets/missiontools-preview.png";
 import heroImage03 from "./assets/hero/hero-03.png";
+import profilePhoto from "./assets/nino-pagaran.jpg";
 import SectionCard from "./components/SectionCard.vue";
 
 const activeHeroSlide = ref(0);
 const isContactModalOpen = ref(false);
+const isProfileImageOpen = ref(false);
 const turnstileContainer = ref(null);
 const turnstileToken = ref("");
 const turnstileError = ref("");
 const turnstileWidgetId = ref(null);
 const turnstileScriptReady = ref(false);
-let heroSlideTimer;
 let turnstileScriptPromise;
+let heroSlideTimer;
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || "";
 const hasContactForm = Boolean(turnstileSiteKey);
 
@@ -415,6 +444,14 @@ function toggleTheme() {
   isDark.value = !isDark.value;
   localStorage.setItem("theme", isDark.value ? "dark" : "light");
   applyTheme();
+}
+
+function showNextHeroSlide() {
+  activeHeroSlide.value = (activeHeroSlide.value + 1) % heroSlides.length;
+}
+
+function showPreviousHeroSlide() {
+  activeHeroSlide.value = (activeHeroSlide.value - 1 + heroSlides.length) % heroSlides.length;
 }
 
 applyTheme();
@@ -439,8 +476,21 @@ function closeContactModal() {
   isContactModalOpen.value = false;
 }
 
+function openProfileImage() {
+  isProfileImageOpen.value = true;
+}
+
+function closeProfileImage() {
+  isProfileImageOpen.value = false;
+}
+
 function handleEscapeKey(event) {
   if (event.key === "Escape") {
+    if (isProfileImageOpen.value) {
+      closeProfileImage();
+      return;
+    }
+
     closeContactModal();
   }
 }
@@ -531,24 +581,21 @@ async function renderTurnstile() {
 }
 
 onMounted(() => {
-  heroSlideTimer = window.setInterval(() => {
-    activeHeroSlide.value = (activeHeroSlide.value + 1) % heroSlides.length;
-  }, 2600);
-
+  heroSlideTimer = window.setInterval(showNextHeroSlide, 4500);
   window.addEventListener("keydown", handleEscapeKey);
 });
 
 onBeforeUnmount(() => {
-  if (heroSlideTimer) {
-    window.clearInterval(heroSlideTimer);
-  }
-
+  window.clearInterval(heroSlideTimer);
   window.removeEventListener("keydown", handleEscapeKey);
   document.body.style.overflow = "";
 });
 
+watch([isContactModalOpen, isProfileImageOpen], ([isContactOpen, isProfileOpen]) => {
+  document.body.style.overflow = isContactOpen || isProfileOpen ? "hidden" : "";
+});
+
 watch(isContactModalOpen, (isOpen) => {
-  document.body.style.overflow = isOpen ? "hidden" : "";
 
   if (!isOpen) {
     turnstileToken.value = "";
@@ -705,12 +752,12 @@ const experiences = [
     company: "DI Strategy",
     type: "Contract",
     period: "Apr 2026 – Jul 2026",
-    summary: "Built AI workflow PoCs, full-stack product features, and packaged web deliverables across Python, SwiftUI, FastAPI, React, and WordPress.",
+    summary: "Worked on AI workflow prototypes, full-stack product features, and packaged web deliverables.",
     metrics: ["Local-first AI subtitles", "SwiftUI + FastAPI app", "CI + pre-push checks"],
     highlights: [
       "Built a Traditional Chinese subtitle PoC covering STT, context injection, SRT export, run history, caching, and oversized-file handling.",
-      "Developed a reptile care platform with auth, pet profiles, care records, feeding plans, media, community features, AI-assisted care, and commerce flows.",
-      "Added migrations, diagnostics, linting, formatting, automated tests, smoke checks, Makefile tasks, and bilingual product specs for cleaner delivery and handoff.",
+      "Built a reptile care platform with auth, pet profiles, care records, feeding plans, media, community features, AI-assisted care, and commerce flows.",
+      "Set up migrations, diagnostics, linting, formatting, automated tests, smoke checks, Makefile tasks, and bilingual product specs.",
     ],
     stack: ["Python", "Gradio", "SQLite", "OpenAI", "Groq", "SwiftUI", "FastAPI"],
   },
@@ -720,12 +767,12 @@ const experiences = [
     company: "Strixen Limited (Mission Tools App)",
     type: "Contract",
     period: "Nov 2025 – Mar 2026",
-    summary: "Built a mobile-first Nuxt/Vue product surface and supporting API workflows for dashboards, media access, and billing operations.",
+    summary: "Built a mobile-first Nuxt/Vue app and backend flows for dashboards, media access, and billing.",
     metrics: ["Mobile-first SPA", "Dashboard + billing flows", "API-backed media access"],
     highlights: [
-      "Built product interfaces for dashboards, playback, account access, and billing flows with Nuxt 4 and Vue 3.",
-      "Implemented backend workflows with Bun, Hono, and Drizzle ORM for application state, data access, and operational flows.",
-      "Refined release quality, deployment behavior, and production-style app structure across frontend and backend.",
+      "Built product interfaces for dashboards, playback, account access, and billing with Nuxt 4 and Vue 3.",
+      "Implemented backend workflows with Bun, Hono, and Drizzle ORM for application state, data access, and operations.",
+      "Improved release quality, deployment behavior, and app structure across frontend and backend.",
     ],
     stack: ["Nuxt", "Vue 3", "Bun", "Hono", "Drizzle ORM"],
   },
@@ -735,12 +782,12 @@ const experiences = [
     company: "Independent / Client Work",
     type: "Freelance",
     period: "Jul 2023 – Dec 2025",
-    summary: "Built and deployed full-stack web applications for small businesses, internal tools, and campus use cases.",
+    summary: "Built and deployed web apps for small businesses, tools, and campus projects.",
     metrics: ["Custom business websites", "Internal tools", "Automation workflows"],
     highlights: [
-      "Delivered custom websites, admin tools, and product interfaces aligned to client requirements and operational workflows.",
+      "Delivered custom websites, admin tools, and product interfaces based on client needs.",
       "Implemented authentication, REST APIs, database-backed features, and automation flows for content, operations, and user management.",
-      "Handled end-to-end delivery from planning and UI implementation to backend integration, deployment, and stakeholder iteration.",
+      "Handled delivery from planning and UI work through backend integration, deployment, and client iteration.",
     ],
     stack: ["React", "Next.js", "Node.js", "PostgreSQL", "n8n", "Supabase"],
   },
@@ -750,12 +797,12 @@ const experiences = [
     company: "Bayoa Analytics Engineering",
     type: "Internship",
     period: "Sep – Nov 2024",
-    summary: "Supported internal dashboard development and data-layer improvements for analytics-oriented product workflows.",
+    summary: "Worked on internal dashboards and data-layer improvements for analytics products.",
     metrics: ["Internal dashboards", "Schema migration work", "Analytics interfaces"],
     highlights: [
       "Built dashboard and analytics interface features with a focus on maintainable frontend structure and data presentation.",
       "Contributed to schema migration work from Prisma to Drizzle ORM for clearer backend structure and maintainability.",
-      "Worked within an existing engineering environment using internal tooling, relational modeling, and shared implementation standards.",
+      "Worked inside an engineering setup with internal tooling, relational modeling, and shared standards.",
     ],
     stack: ["TypeScript", "Drizzle ORM", "Prisma", "Dashboards"],
   },
@@ -775,8 +822,6 @@ const experiences = [
     stack: ["Product planning", "Backend coordination", "Presentations"],
   },
 ];
-
-const featuredExperiences = experiences.slice(0, 4);
 
 const websites = [
   {
@@ -820,8 +865,24 @@ const websites = [
 
 const heroSlides = [
   {
-    name: "Hero 03",
+    name: "Product dashboard",
     image: heroImage03,
+    alt: "A dark dashboard interface shown as a sample of Niño's product work",
+  },
+  {
+    name: "Food Truck Community",
+    image: foodtruckPreview,
+    alt: "A booking platform interface for Food Truck Community",
+  },
+  {
+    name: "MissionTools",
+    image: missiontoolsPreview,
+    alt: "A MissionTools operations dashboard interface",
+  },
+  {
+    name: "Attends",
+    image: attendsPreview,
+    alt: "An attendance platform interface",
   },
 ];
 

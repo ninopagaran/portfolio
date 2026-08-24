@@ -1,13 +1,11 @@
 <template>
-  <section class="section" :aria-labelledby="titleId">
-    <header class="section-header">
-      <p class="section-eyebrow">{{ eyebrow }}</p>
-      <h2 :id="titleId" class="section-title">{{ title }}</h2>
-      <p v-if="subtitle" class="section-subtitle">{{ subtitle }}</p>
+  <section class="scroll-mt-5 border-b border-[#d6d1c5] py-6 last:border-b-0 md:py-8 dark:border-[#40433d]" :aria-labelledby="titleId">
+    <header class="mb-5">
+      <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-[#af3f2c] dark:text-[#ed876f]">{{ eyebrow }}</p>
+      <h2 :id="titleId" class="text-2xl font-semibold tracking-tight">{{ title }}</h2>
+      <p v-if="subtitle" class="mt-2 text-sm text-[#55554e] leading-relaxed dark:text-[#c9c5bb]">{{ subtitle }}</p>
     </header>
-    <div class="section-body">
-      <slot />
-    </div>
+    <slot />
   </section>
 </template>
 
