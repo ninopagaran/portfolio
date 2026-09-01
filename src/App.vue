@@ -119,7 +119,16 @@
               <h3 class="mt-1 mb-1 text-lg font-semibold">
                 <a class="transition-colors hover:text-[#af3f2c] dark:hover:text-[#ed876f]" :href="site.link" target="_blank" rel="noopener">{{ site.name }}</a>
               </h3>
-              <p class="text-sm leading-relaxed text-[#76756d] dark:text-[#a8a49a]">{{ site.stack }}</p>
+              <p class="mb-2 text-sm leading-relaxed text-[#55554e] dark:text-[#c9c5bb]">{{ site.description }}</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  v-for="technology in site.stack.split(' / ')"
+                  :key="technology"
+                  class="rounded border border-[#d6d1c5] bg-[#f5e7e2] px-2 py-1 text-xs font-medium text-[#55554e] shadow-sm dark:border-[#40433d] dark:bg-[#392923] dark:text-[#c9c5bb]"
+                >
+                  {{ technology }}
+                </span>
+              </div>
               <a class="mt-3 w-fit text-sm font-medium text-[#af3f2c] hover:underline dark:text-[#ed876f]" :href="site.link" target="_blank" rel="noopener">
                 View live site <ArrowUpRight class="inline-block text-[#af3f2c] dark:text-[#ed876f]" :size="15" aria-hidden="true" />
               </a>
@@ -833,7 +842,8 @@ const websites = [
     previewClass: "preview--image",
     previewEmbed: "",
     previewImage: takeUpDeltaPreview,
-    stack: "Live web app",
+    description: "A peer-to-peer sharing marketplace for the UP Cebu community to lend, borrow, and rent useful items.",
+    stack: "Nuxt / tRPC / Prisma / Supabase",
     link: "https://take-up-delta.vercel.app/",
   },
   {
@@ -843,7 +853,8 @@ const websites = [
     previewClass: "preview--image",
     previewEmbed: "",
     previewImage: kleoPreview,
-    stack: "Live web app",
+    description: "A private, access-controlled workspace for creating and viewing document-based conversations.",
+    stack: "Next.js / Gemini / Vercel AI SDK / Neon / pgvector",
     link: "https://kleo-paid-trial.vercel.app/",
   },
   {
@@ -853,6 +864,7 @@ const websites = [
     previewClass: "preview--embed",
     previewEmbed: "https://drops.foodtruckcommunity.com/",
     previewImage: "",
+    description: "A platform for discovering and claiming limited food releases from Food Truck Community.",
     stack: "React / Tailwind / Supabase",
     link: "https://drops.foodtruckcommunity.com/",
   },
@@ -862,6 +874,7 @@ const websites = [
     placeholder: "",
     previewClass: "preview--image",
     previewImage: foodtruckPreview,
+    description: "A booking platform that helps customers discover food trucks and connect around events.",
     stack: "Nuxt / GraphQL / Custom UI",
     link: "https://app.foodtruckcommunity.com/",
   },
@@ -871,6 +884,7 @@ const websites = [
     placeholder: "",
     previewClass: "preview--image",
     previewImage: missiontoolsPreview,
+    description: "An operations platform for dashboard access, media playback, account features, and billing workflows.",
     stack: "Nuxt / Dashboard UI",
     link: "https://app.staging.missiontools.app/",
   },
@@ -880,6 +894,7 @@ const websites = [
     placeholder: "",
     previewClass: "preview--image",
     previewImage: attendsPreview,
+    description: "A classroom attendance platform where hosts create sessions and students join classes using a course code.",
     stack: "Next.js / Session management UI",
     link: "https://attends-128proj-frontend.onrender.com/",
   },
