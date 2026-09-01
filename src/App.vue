@@ -409,7 +409,9 @@ import { nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue"
 import { ArrowUpRight, ChevronLeft, ChevronRight, Moon, Sun, X } from "@lucide/vue";
 import attendsPreview from "./assets/attends-preview.png";
 import foodtruckPreview from "./assets/foodtruck-microlink.png";
+import kleoPreview from "./assets/kleo-paid-trial-preview.png";
 import missiontoolsPreview from "./assets/missiontools-preview.png";
+import takeUpDeltaPreview from "./assets/take-up-delta-preview.png";
 import heroImage03 from "./assets/hero/hero-03.png";
 import profilePhoto from "./assets/nino-pagaran.jpg";
 import SectionCard from "./components/SectionCard.vue";
@@ -825,6 +827,26 @@ const experiences = [
 
 const websites = [
   {
+    name: "Take Up Delta",
+    type: "Community marketplace",
+    placeholder: "",
+    previewClass: "preview--image",
+    previewEmbed: "",
+    previewImage: takeUpDeltaPreview,
+    stack: "Live web app",
+    link: "https://take-up-delta.vercel.app/",
+  },
+  {
+    name: "SourceChat",
+    type: "Private workspace",
+    placeholder: "",
+    previewClass: "preview--image",
+    previewEmbed: "",
+    previewImage: kleoPreview,
+    stack: "Live web app",
+    link: "https://kleo-paid-trial.vercel.app/",
+  },
+  {
     name: "foodiedrops",
     type: "Limited food releases",
     placeholder: "",
@@ -868,6 +890,11 @@ const heroSlides = [
     name: "Product dashboard",
     image: heroImage03,
     alt: "A dark dashboard interface shown as a sample of Niño's product work",
+  },
+  {
+    name: "SourceChat",
+    image: kleoPreview,
+    alt: "The SourceChat private workspace access screen",
   },
   {
     name: "Food Truck Community",
