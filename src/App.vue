@@ -855,7 +855,7 @@ const websites = [
     previewImage: kleoPreview,
     description: "A private, access-controlled workspace for creating and viewing document-based conversations.",
     stack: "Next.js / Gemini / Vercel AI SDK / Neon / pgvector",
-    link: "https://kleo-paid-trial.vercel.app/",
+    link: "https://sourcechat.vercel.app/",
   },
   {
     name: "foodiedrops",
